@@ -2,34 +2,27 @@
 <html>
 <body>
 
-<h1>Contact Us</h1>
+<head>
+<title>Rogue Soda - Contact Us</title>
+<link rel='stylesheet' type='text/css' href='./website.css'/>
 
-<style>
-.button {
-
-    border-radius: 8px;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-</style>
 </head>
 
+<body>
+	<div id='container'>
+		<div id='header'>
+      <img align='right' src='http://i.imgur.com/QHzBsXy.png' alt = 'Rogue Soda Logo' width=25% height=1%>
+			<h2 style='text-align:center;'>Rogue Soda</h2>
 
-<a href= "index.php" class="button">Home</a>
-<a href="About.php" class="button">About</a>
-<a href="Contact.php" class="button">Contact Us</a>
-<br>
-<br>
-<br>
 
+				<a href= "home.php" class="nav_button nav_buttonA">Home</a>
+				<a href="about.php" class="nav_button nav_buttonA">About</a>
+				<a href="contact.php" class="nav_button nav_buttonA">Contact Us</a>
+				<a href= "index.php" class="nav_button nav_buttonA">Store</a>
+
+		</div>
+		<div id='content'>
+</body>
 
 
 <?php
@@ -39,5 +32,5 @@ echo "Email: website@website.com <br>";
 
 ?>
 
-</body>
+
 </html>
