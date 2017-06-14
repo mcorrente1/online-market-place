@@ -4,6 +4,7 @@
 
 <link rel='stylesheet' type='text/css' href='./website.css'/>
 <title>Rogue Soda - Home</title>
+<link rel="icon" href="http://i.imgur.com/QHzBsXy.png">
 </head>
 
 

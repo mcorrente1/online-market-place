@@ -178,7 +178,7 @@ else if(isset($_GET['checkout'])) {
 // View all products
 else {
 	// Display site links
-	
+
 
 	echo "<h3>Our Products</h3>";
 

@@ -5,7 +5,8 @@
 <head>
 
 <title>Rogue Soda - About</title>
-<link rel='stylesheet' type='text/css' href='./website.css'/>
+  <link rel='stylesheet' type='text/css' href='./website.css'/>
+  <link rel="icon" href="http://i.imgur.com/QHzBsXy.png">
 </head>
 
 

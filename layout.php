@@ -7,13 +7,14 @@ $header = <<<HTML
 <head>
 	<title>Rogue Soda</title>
 	<link rel='stylesheet' type='text/css' href='./website.css' />
+	<link rel="icon" href="http://i.imgur.com/QHzBsXy.png">
 </head>
+
 
 <body>
 	<div id='container'>
 		<div id='header'>
 			<h2 style='text-align:center;'>Rogue Soda's Flavors</h2>
-				<p style='text-align:right;'><a href='./index.php?view_cart=1'>View Cart</a></p>
 
 
 						<a href= "home.php" class="nav_button nav_buttonA">Home</a>
@@ -25,6 +26,8 @@ $header = <<<HTML
 
 		</div>
 		<div id='content'>
+			<p style='text-align:right;'><a href='./index.php?view_cart=1'>View Cart</a></p>
+
 HTML;
 
 $footer = <<<HTML
