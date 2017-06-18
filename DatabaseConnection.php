@@ -67,23 +67,26 @@ class DatabaseConnection {
         $this->getConnection()->close();
     }
 
-
     # receives an SQL command, processes the command through the $conn variable then returns the result
     function queryDB($sql){
 
-        $result = $this->getConnection()->query($sql);
+        echo $sql;
 
-        #if ($result->num_rows > 0) {
-            // output data of each row
-        # while($row = $result->fetch_assoc()) {
-        #        echo "id: " . $row["num"]. " - Name: " . $row["string"].  "<br>";
-        #    }
-        #}
-        #else {
-        #    echo "0 results";
-        #}
+        if($result = $this->getConnection()->query($sql)){
+            echo "worked out";
+        }
+        else{
+            echo "nah";
+        }
 
         return $result;
+    }
+
+    function getDBInstance(){
+        if(!isset($this->conn)){
+            $this->connect();
+        }
+        return $this->connect();
     }
 }
 
