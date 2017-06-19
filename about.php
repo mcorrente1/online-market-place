@@ -2,19 +2,21 @@
 <!DOCTYPE html>
 <html>
 <body>
-<head>
+  <head>
 
-<title>Rogue Soda - About</title>
   <link rel='stylesheet' type='text/css' href='./website.css'/>
-  <link rel="icon" href="http://i.imgur.com/QHzBsXy.png">
-</head>
+  <title>Rogue Soda - Home</title>
+  <link rel="icon" href="http://i.imgur.com/9EVFXmq.png">
+  </head>
 
 
 <body>
 	<div id='container'>
 		<div id='header'>
-      <img align='right' src='http://i.imgur.com/QHzBsXy.png' alt = 'Rogue Soda Logo' width=25% height=1%>
-			<h2 style='text-align:center;'></h2>
+      <a align='right' href="newUser.php">Sign Up</a> <a> | </a> <a href="login.php">Login</a>
+      <h2 align='center'>About</h2>
+      <img align='right' src='http://i.imgur.com/9EVFXmq.png' alt = 'Rogue Soda Logo' width=25% height=1%>
+
 
 
 				<a href= "home.php" class="nav_button nav_buttonA">Home</a>

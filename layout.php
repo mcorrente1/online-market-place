@@ -5,16 +5,18 @@ $header = <<<HTML
 <!doctype HTML public>
 <html>
 <head>
-	<title>Rogue Soda</title>
-	<link rel='stylesheet' type='text/css' href='./website.css' />
-	<link rel="icon" href="http://i.imgur.com/QHzBsXy.png">
+
+<link rel='stylesheet' type='text/css' href='./website.css'/>
+<title>Rogue Soda - Store</title>
+<link rel="icon" href="http://i.imgur.com/9EVFXmq.png">
 </head>
 
 
 <body>
 	<div id='container'>
 		<div id='header'>
-			<h2 style='text-align:center;'>Rogue Soda's Flavors</h2>
+						<a align='right' href="newUser.php">Sign Up</a> <a> | </a> <a href="login.php">Login</a>
+						<h2 align='center'>Store</h2>
 
 
 						<a href= "home.php" class="nav_button nav_buttonA">Home</a>
@@ -22,7 +24,7 @@ $header = <<<HTML
 						<a href="contact.php" class="nav_button nav_buttonA">Contact Us</a>
 						<a href= "index.php" class="nav_button nav_buttonA">Store</a>
 
-						<img align='right' src='http://i.imgur.com/QHzBsXy.png' alt = 'Rogue Soda Logo' width=25% height=35%>
+						<img align='right' src='http://i.imgur.com/9EVFXmq.png' alt = 'Rogue Soda Logo' width=25% height=35%>
 
 		</div>
 		<div id='content'>
