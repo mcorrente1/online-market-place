@@ -15,6 +15,6 @@ require("DatabaseConnection.php");
         }
         else {
             #todo make sure that user is notified that login failed
-            header('Location: login.php');
+            header('Location: login.php/?retry=false');
         }
     }
