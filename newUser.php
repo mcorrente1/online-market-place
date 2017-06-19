@@ -82,10 +82,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if($isValid){
-        #todo insert data into user table through mysqli query command
-        # $db = new DatabaseConnection();
-
-        echo "VALID!!!!!";
+        #todo automatically log user in
+        $db = new DatabaseConnection();
+        #INSERT INTO users (firstName, lastName, email, password, phone, address) VALUES ('Jim', 'Jones', 'jim@gmail.com', 'password', '9491112323', '8123 Brown Ave');
+        if($db->queryDB("INSERT INTO users (firstName, lastName, email, password, phone, address) VALUES ('" . $fName . "', '" . $lName . "', '" . $email . "', '" . $password . "', '" . $phoneNum . "', '" . $address . "');")){
+            header('Location:/online-marketplace/successful.php');
+        }
     }
 
 }
