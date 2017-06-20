@@ -13,7 +13,6 @@ if(isset($_GET['empty_cart'])) {
 	$_SESSION['shopping_cart'] = array();
 }
 
-
 // **PROCESS FORM DATA**
 
 $message = '';
@@ -65,22 +64,18 @@ if(isset($_GET['view_product'])) {
 	if(isset($products[$product_id])) {
 		// Display site links
 		echo "<p>
-			<a href='./index.php'>DropShop</a> &gt; <a href='./index.php'>" .
-			$products[$product_id]['category'] . "</a></p>";
+			<a href='./index.php'>Back</a>";
 
 
 		// Display product
 		echo "<p>
-			<span style='font-weight:bold;'>" . $products[$product_id]['name'] . "</span><br />
-			<span>$" . $products[$product_id]['price'] . "</span><br />
-			<span>" . $products[$product_id]['description'] . "</span><br />
+			<span style='font-weight:bold;'>" . $products[$product_id]->getName() . "</span><br />
+			<span><img src=".$product->getImagePath()." alt=". $product->getName() ."height='700' width='500'\"></span><br/>
+			<span>$" . $products[$product_id]->getPrice() . "</span><br />
+			<span>" . $products[$product_id]->getDesc() . "</span><br />
 			<p>
 				<form action='./index.php?view_product=$product_id' method='post'>
-					<select name='quantity'>
-						<option value='1'>1</option>
-						<option value='2'>2</option>
-						<option value='3'>3</option>
-					</select>
+					<input name='quantity' type='number' min='1' value='1' required>
 					<input type='hidden' name='product_id' value='$product_id' />
 					<input type='submit' name='add_to_cart' value='Add to cart' />
 				</form>
@@ -111,7 +106,6 @@ else if(isset($_GET['view_cart'])) {
 				<tr>
 					<th style='border-bottom:1px solid #000000;'>Name</th>
 					<th style='border-bottom:1px solid #000000;'>Price</th>
-					<th style='border-bottom:1px solid #000000;'>Category</th>
 					<th style='border-bottom:1px solid #000000;'>Quantity</th>
 				</tr>";
 				foreach($_SESSION['shopping_cart'] as $id => $product) {
@@ -119,11 +113,10 @@ else if(isset($_GET['view_cart'])) {
 
 					echo "<tr>
 						<td style='border-bottom:1px solid #000000;'><a href='./index.php?view_product=$id'>" .
-							$products[$product_id]['name'] . "</a></td>
-						<td style='border-bottom:1px solid #000000;'>$" . $products[$product_id]['price'] . "</td>
-						<td style='border-bottom:1px solid #000000;'>" . $products[$product_id]['category'] . "</td>
+							$products[$product_id]->getName() . "</a></td>
+						<td style='border-bottom:1px solid #000000;'>$" . $products[$product_id]->getPrice() . "</td>
 						<td style='border-bottom:1px solid #000000;'>
-							<input type='text' name='quantity[$product_id]' value='" . $product['quantity'] . "' /></td>
+							<input type='number' name='quantity[$product_id]' value='" . $product['quantity'] . "' /></td>
 					</tr>";
 				}
 			echo "</table>
@@ -182,20 +175,16 @@ else {
 
 	echo "<h3>Our Products</h3>";
 
-	echo "<table style='width:500px;' cellspacing='0'>";
-	echo "<tr>
-		<th style='border-bottom:1px solid #000000;'>Name</th>
-		<th style='border-bottom:1px solid #000000;'>Price</th>
-		<th style='border-bottom:1px solid #000000;'>Category</th>
-	</tr>";
-
+	echo "<table style='width:500px;' cellspacing='0' >";
 
 	// Loop to display all products
-	foreach($products as $id => $product) {
+	foreach($products as $product) {
+		// TODO separate this from css
 		echo "<tr>
-			<td style='border-bottom:1px solid #000000;'><a href='./index.php?view_product=$id'>" . $product['name'] . "</a></td>
-			<td style='border-bottom:1px solid #000000;'>$" . $product['price'] . "</td>
-			<td style='border-bottom:1px solid #000000;'>" . $product['category'] . "</td>
+			<td><img src=".$product->getImagePath()." alt=". $product->getName() ."height='304' width='228'\"></td>
+			<td style='border-bottom:1px solid #000000;'><a href='./index.php?view_product=". $product->getProductId() ."'>" . $product->getName() . "</a></td>
+			<td style='border-bottom:1px solid #000000;'>$" . $product->getPrice() . "</td>
+			<td style='border-bottom:1px solid #000000;'>" . $product->getDesc() . "</td>
 		</tr>";
 	}
 	echo "</table>";
