@@ -1,10 +1,16 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: mattcorrente
- * Date: 6/19/17
- * Time: 12:44 PM
+ * Class Name: Product
+ * Date: 07/27/17
+ * Programmer: Matthew Corrente
+ * Description: This class is used to manage a product.  It contains basic functionality to get and set all attributes and
+ * two to display the products in HTML (one for a basic product listing and the other for a more specific view that alows
+ * you to add the item to a shopping cart)
+ * Explanation of important functions: This class is very basic. Outside of getters and setters, the display functions
+ * are the only other ones.  They simply output a product as either an HTML paragraph or table row element.
+ * Important data structures: None
+ * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
  */
 
 #todo make a singleton
@@ -58,7 +64,7 @@ class Product
         $this->productId = $id;
     }
 
-    #todo decide how this will work, should maybe put forum outside of method?
+    #todo decide how this will work, should maybe put quantity forum outside of method?
     //used to after user clicks on a product, this function provides ability to add to cart??
     public function viewProduct(){
         // Display product
@@ -90,5 +96,4 @@ class Product
 
 
     }
-
 }

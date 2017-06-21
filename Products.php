@@ -1,5 +1,21 @@
 <?php
 
+/**
+ * Class Name: Products
+ * Date: 07/27/17
+ * Programmer: Matthew Corrente
+ * Description: This class is used to manage an array of product objects. The array is initialized by querying a remote
+ * database and instantiating objects based on the queried product data.
+ * Explanation of important functions: The most important function in this class is the constructor.  There are no parameters
+ * to be passed in. First, a connection to the database is created and then a query is sent to select everything from
+ * the PRODUCTS table. Every returned row is looped through and product objects are then instantiated and added to the
+ * products array to the location based on their product id.
+ * Another important function is the display, which uses a foreach loop structure to output each product in the products
+ * array to an HTML table.
+ * Important data structures: Array-used to manage all of the products
+ * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required
+*/
+
 require("DatabaseConnection.php");
 require("Product.php");
 
@@ -27,6 +43,8 @@ class Products{
                 $this->addProduct($product);
             }
         }
+
+        $db->disconnect();
     }
 
 
@@ -47,6 +65,7 @@ class Products{
     function displayProductForPurchase($productId){
         $this->getProduct($productId)->viewProduct();
     }
+
 
     function displayProducts()
     {

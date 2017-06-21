@@ -1,11 +1,17 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: mattcorrente
- * Date: 6/11/17
- * Time: 9:56 AM
+ * Class Name: Customer
+ * Date: 07/27/17
+ * Programmer: Matthew Corrente
+ * Description: This class is used to manage a customer object. A Customer is a child or the User class which allows
+ * for the management of specific, registered customer attributes and allows user activities to be tracked through
+ * their specific user id.
+ * Explanation of important functions: All of the methods are getters and setters.
+ * Important data structures: None.
+ * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
  */
+
 class Customer extends User
 {
     private $firstName;
