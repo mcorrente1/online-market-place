@@ -1,4 +1,18 @@
 <?php
+
+/**
+ * Class Name: DatabaseConnection
+ * Date: 07/27/17
+ * Programmer: Matthew Corrente
+ * Description: This class is used to establish a connection to a remote database and handle queries.
+ * Explanation of important functions: The constructor uses hardcoded database information to call the connect method to
+ * establish a connection to a cleardb mysql database (setters can be used to change attribute values to connect to a
+ * different database). The queryDB method is also very important, it accepts a string (the mysql query statement) and
+ * returns FALSE for a failed query or a mysqli_result object if the query was successful.
+ * Important data structures: None.
+ * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
+ */
+
 class DatabaseConnection {
 
     private $servername;
