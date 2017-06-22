@@ -18,7 +18,8 @@ class User
     # default constructor sets user to guest
     function __construct()
     {
-        $this->userId = "guest";
+        # -1 represents a guest
+        $this->userId = -1;
     }
 
     public function getUserId(){

@@ -12,6 +12,8 @@
  * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
  */
 
+require_once("User.php");
+
 class Customer extends User
 {
     private $firstName;
@@ -21,7 +23,8 @@ class Customer extends User
     private $address;
     private $phoneNumber;
 
-    public function __construct($fName, $lName, $cc, $eAddress, $newAddress, $pNum){
+    public function __construct($id, $fName, $lName, $cc, $eAddress, $newAddress, $pNum){
+        $this->setUserId($id);
         $this->firstName = $fName;
         $this->lastName = $lName;
         $this->creditCard = $cc;

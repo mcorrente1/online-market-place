@@ -1,37 +1,14 @@
-<!DOCTYPE HTML>
-<html>
-<body>
-<head>
-
-  <link rel='stylesheet' type='text/css' href='./website.css'/>
-  <title>Rogue Soda - Home</title>
-  <link rel="icon" href="http://i.imgur.com/9EVFXmq.png">
-</head>
-
-<body>
-	<div id='container'>
-		<div id='header'>
-						<a align='right' href="newUser.php">Sign Up</a> <a> | </a> <a href="login.php">Login</a>
-						<h2 align='center'>Store</h2>
-
-
-						<a href= "home.php" class="nav_button nav_buttonA">Home</a>
-						<a href="about.php" class="nav_button nav_buttonA">About</a>
-						<a href="contact.php" class="nav_button nav_buttonA">Contact Us</a>
-						<a href= "index.php" class="nav_button nav_buttonA">Store</a>
-
-						<img align='right' src='http://i.imgur.com/9EVFXmq.png' alt = 'Rogue Soda Logo' width=25% height=35%>
-
-		</div>
-<div id='content'>
-</form>
-</div>
-
-</body>
-</html>
-
 <?php
+require_once("layout.php");
 require("DatabaseConnection.php");
+require_once("Customer.php");
+
+echo $header;
+
+if(!isset($_SESSION)) {
+    session_start();
+}
+
 $db = new DatabaseConnection();
 $email = "";
 if (isset($_POST["email"]) && isset($_POST["password"]) ) {
@@ -39,20 +16,28 @@ if (isset($_POST["email"]) && isset($_POST["password"]) ) {
     $pword = $_POST["password"];
     $result = $db->queryDB("SELECT * FROM users where email = '" . $email . "' and password = '" . $pword . "';");
     if ($result && $result->num_rows == 1) {
-        header('Location:/online-marketplace/successful.php');
+        $row = $result->fetch_array();
+        unset($_SESSION['user']);
+        $_SESSION['user'] = new Customer($row["userId"],$row["firstName"], $row["lastName"],$row["creditCard"],$row["email"],$row["address"],$row["phone"]);
+        header('Location:/online-marketplace/index.php');
     }
     else {
-        header('Location:/online-marketplace/login.php/?retry=false');
+         header("Location:/online-marketplace/login.php?retry=".$email);
     }
 }
 # used to check if login was invalid, if so display prompt to retry
 if(isset($_GET["retry"])){
     echo "Login information was not found.  Please try again.";
+    $email = $_GET["retry"];
 }
-?>
 
-<form action="#" method="POST">
-Email: <input type="text" name="email" value="<?php echo $email; ?>"><br>
-Password: <input type="password" name="password"><br>
-<input type="submit">
+
+echo "<form action='#' method='POST'>
+Email: <input type='text' name='email' value='".$email."'><br>
+Password: <input type='password' name='password'><br>
+<input type='submit'>
 </form>
+";
+
+
+echo $footer;

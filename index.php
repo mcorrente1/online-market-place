@@ -1,10 +1,12 @@
 <?php
 
 require_once("Products.php");
+require_once("Cart.php");
 require("layout.php");
-require("Cart.php");
 
-session_start();
+if(!isset($_SESSION)) {
+    session_start();
+}
 
 if (!isset($_SESSION['products'])) {
     $_SESSION['products'] = new Products();
@@ -17,6 +19,7 @@ if(!isset($_SESSION['shopping_cart'])) {
 
 // Empty cart
 if(isset($_GET['empty_cart'])) {
+    unset($_SESSION['shopping_cart']);
 	$_SESSION['shopping_cart'] = new Cart();
 }
 
@@ -160,5 +163,3 @@ else {
 }
 
 echo $footer;
-
-?>
