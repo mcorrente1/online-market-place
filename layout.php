@@ -28,7 +28,6 @@ $header ="
                             $header .= "<a align='right' href='newUser.php'>Sign Up</a> <a> | </a> <a href='login.php'>Login</a>";
 		                }
 		                else{
-                            echo $_SESSION['user']->getUserId();
                             $header .= "<a align='right' href='myAccount.php'>My Account</a> | <a href='logout.php'>Log Out</a>";
                         }
 
