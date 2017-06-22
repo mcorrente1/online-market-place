@@ -12,6 +12,8 @@
  * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
  */
 
+require_once("User.php");
+
 class Customer extends User
 {
     private $firstName;
@@ -21,7 +23,8 @@ class Customer extends User
     private $address;
     private $phoneNumber;
 
-    public function __construct($fName, $lName, $cc, $eAddress, $newAddress, $pNum){
+    public function __construct($id, $fName, $lName, $cc, $eAddress, $newAddress, $pNum){
+        $this->setUserId($id);
         $this->firstName = $fName;
         $this->lastName = $lName;
         $this->creditCard = $cc;
@@ -65,27 +68,27 @@ class Customer extends User
 
 
     public function setFirstName($name){
-        return $this->firstName = $name;
+        $this->firstName = $name;
     }
 
     public function setLastName($name){
-        return $this->lastName = $name;
+        $this->lastName = $name;
     }
 
     public function setCreditCard($cardInfo){
-        return $this->creditCard= $cardInfo;
+        $this->creditCard= $cardInfo;
     }
 
     public function setEmail($newEmail){
-        return $this->email = $newEmail;
+        $this->email = $newEmail;
     }
 
     public function setAddress($newAddress){
-        return $this->address = $newAddress;
+        $this->address = $newAddress;
     }
 
     public function setPhoneNumber($newPhone){
-        return $this->phoneNumber = $newPhone;
+        $this->phoneNumber = $newPhone;
     }
 
     public function setPass($newPass){

@@ -1,16 +1,26 @@
 <?php
-session_start();
 
-require("products.php");
+require_once("Products.php");
+require_once("Cart.php");
 require("layout.php");
+
+if(!isset($_SESSION)) {
+    session_start();
+}
+
+if (!isset($_SESSION['products'])) {
+    $_SESSION['products'] = new Products();
+}
 
 // Initialize cart
 if(!isset($_SESSION['shopping_cart'])) {
-	$_SESSION['shopping_cart'] = array();
+	$_SESSION['shopping_cart'] = new Cart();
 }
+
 // Empty cart
 if(isset($_GET['empty_cart'])) {
-	$_SESSION['shopping_cart'] = array();
+    unset($_SESSION['shopping_cart']);
+	$_SESSION['shopping_cart'] = new Cart();
 }
 
 // **PROCESS FORM DATA**
@@ -18,39 +28,49 @@ if(isset($_GET['empty_cart'])) {
 $message = '';
 
 // Add product to cart
-if(isset($_POST['add_to_cart'])) {
-	$product_id = $_POST['product_id'];
+if(isset($_GET['add_to_cart'])) {
+	$product_id = $_GET['product_id'];
 
 	// Check for valid item
-	if(!isset($products[$product_id])) {
+	if(!$_SESSION['products']->checkExists($product_id)) {
 		$message = "Invalid item!<br />";
 	}
 	// If item is already in cart, tell user
-	else if(isset($_SESSION['shopping_cart'][$product_id])) {
+	else if($_SESSION['shopping_cart']->isInCart($product_id)) {
 		$message = "Item already in cart!<br />";
 	}
 	// Otherwise, add to cart
 	else {
-		$_SESSION['shopping_cart'][$product_id]['product_id'] = $_POST['product_id'];
-		$_SESSION['shopping_cart'][$product_id]['quantity'] = $_POST['quantity'];
+        $_SESSION['shopping_cart']->addProduct($_SESSION['products']->getProduct($_GET['product_id']),$_GET['quantity'] );
 		$message = "Added to cart!";
 	}
+
 }
 // Update Cart
-if(isset($_POST['update_cart'])) {
-	$quantities = $_POST['quantity'];
-	foreach($quantities as $id => $quantity) {
-		if(!isset($products[$id])) {
+if(isset($_GET['update_cart'])) {
+
+        if(!$_SESSION['shopping_cart']->isInCart($_GET['product_id'])) {
 			$message = "Invalid product!";
-			break;
 		}
-		$_SESSION['shopping_cart'][$id]['quantity'] = $quantity;
-	}
+		$_SESSION['shopping_cart']->updateQuantity($_GET['product_id'],$_GET['quantity']);
+
 	if(!$message) {
 		$message = "Cart updated!<br />";
 	}
 }
 
+// Remove from Cart
+if(isset($_GET['remove_from_cart'])) {
+
+    if(!$_SESSION['shopping_cart']->isInCart($_GET['product_id'])) {
+        $message = "Invalid product!";
+    }
+    $_SESSION['shopping_cart']->removeProduct($_GET['product_id']);
+
+    if(!$message) {
+        $message = "Product Removed!<br />";
+    }
+}
 
 // **DISPLAY PAGE**
 echo $header;
@@ -59,28 +79,16 @@ echo $message;
 
 // View a product
 if(isset($_GET['view_product'])) {
+
 	$product_id = $_GET['view_product'];
 
-	if(isset($products[$product_id])) {
+	if($_SESSION['products']->checkExists($product_id)) {
 		// Display site links
 		echo "<p>
 			<a href='./index.php'>Back</a>";
 
-
 		// Display product
-		echo "<p>
-			<span style='font-weight:bold;'>" . $products[$product_id]->getName() . "</span><br />
-			<span><img src=".$product->getImagePath()." alt=". $product->getName() ."height='700' width='500'\"></span><br/>
-			<span>$" . $products[$product_id]->getPrice() . "</span><br />
-			<span>" . $products[$product_id]->getDesc() . "</span><br />
-			<p>
-				<form action='./index.php?view_product=$product_id' method='post'>
-					<input name='quantity' type='number' min='1' value='1' required>
-					<input type='hidden' name='product_id' value='$product_id' />
-					<input type='submit' name='add_to_cart' value='Add to cart' />
-				</form>
-			</p>
-		</p>";
+		$_SESSION['products']->displayProductForPurchase($product_id);
 	}
 	else {
 		echo "Invalid product!";
@@ -94,41 +102,21 @@ else if(isset($_GET['view_cart'])) {
 
 	echo "<h3>Your Cart</h3>
 	<p>
-		<a href='./index.php?empty_cart=1'>Empty Cart</a>
+		<a href='./index.php?view_cart=TRUE&empty_cart=1'>Empty Cart</a>
 	</p>";
 
-	if(empty($_SESSION['shopping_cart'])) {
+	if($_SESSION['shopping_cart']->isEmpty()) {
 		echo "Your cart is empty.<br />";
 	}
 	else {
-		echo "<form action='./index.php?view_cart=1' method='post'>
-		<table style='width:500px;' cellspacing='0'>
-				<tr>
-					<th style='border-bottom:1px solid #000000;'>Name</th>
-					<th style='border-bottom:1px solid #000000;'>Price</th>
-					<th style='border-bottom:1px solid #000000;'>Quantity</th>
-				</tr>";
-				foreach($_SESSION['shopping_cart'] as $id => $product) {
-					$product_id = $product['product_id'];
-
-					echo "<tr>
-						<td style='border-bottom:1px solid #000000;'><a href='./index.php?view_product=$id'>" .
-							$products[$product_id]->getName() . "</a></td>
-						<td style='border-bottom:1px solid #000000;'>$" . $products[$product_id]->getPrice() . "</td>
-						<td style='border-bottom:1px solid #000000;'>
-							<input type='number' name='quantity[$product_id]' value='" . $product['quantity'] . "' /></td>
-					</tr>";
-				}
-			echo "</table>
-			<input type='submit' name='update_cart' value='Update' />
-			</form>
-			<p>
+        $_SESSION['shopping_cart']->displayCart();
+			echo "<p>
 				<a href='./index.php?checkout=1'>Checkout</a>
 			</p>";
 
 	}
 }
-// Checkount
+// Checkout
 else if(isset($_GET['checkout'])) {
 	// Display site links
 	echo "<p>
@@ -150,17 +138,17 @@ else if(isset($_GET['checkout'])) {
 				</tr>";
 
 				$total_price = 0;
-				foreach($_SESSION['shopping_cart'] as $id => $product) {
-					$product_id = $product['product_id'];
 
+				#todo should we try not to return the shopping cart array?
+				foreach($_SESSION['shopping_cart']->getCart() as $cartItem) {
 
-					$total_price += $products[$product_id]['price'] * $product['quantity'];
+					$total_price += $cartItem->getProductPrice() * $cartItem->getQuantity();
 					echo "<tr>
-						<td style='border-bottom:1px solid #000000;'><a href='./index.php?view_product=$id'>" .
-							$products[$product_id]['name'] . "</a></td>
-						<td style='border-bottom:1px solid #000000;'>$" . $products[$product_id]['price'] . "</td>
-						<td style='border-bottom:1px solid #000000;'>" . $product['quantity'] . "</td>
-						<td style='border-bottom:1px solid #000000;'>$" . ($products[$product_id]['price'] * $product['quantity']) . "</td>
+						<td style='border-bottom:1px solid #000000;'><a href='./index.php?view_product=".$cartItem->getProductId()."'>" .
+							$cartItem->getProductName(). "</a></td>
+						<td style='border-bottom:1px solid #000000;'>$" . $cartItem->getProductPrice() . "</td>
+						<td style='border-bottom:1px solid #000000;'>" . $cartItem->getQuantity() . "</td>
+						<td style='border-bottom:1px solid #000000;'>$" . ($cartItem->getProductPrice() * $cartItem->getQuantity()) . "</td>
 					</tr>";
 				}
 			echo "</table>
@@ -171,25 +159,7 @@ else if(isset($_GET['checkout'])) {
 // View all products
 else {
 	// Display site links
-
-
-	echo "<h3>Our Products</h3>";
-
-	echo "<table style='width:500px;' cellspacing='0' >";
-
-	// Loop to display all products
-	foreach($products as $product) {
-		// TODO separate this from css
-		echo "<tr>
-			<td><img src=".$product->getImagePath()." alt=". $product->getName() ."height='304' width='228'\"></td>
-			<td style='border-bottom:1px solid #000000;'><a href='./index.php?view_product=". $product->getProductId() ."'>" . $product->getName() . "</a></td>
-			<td style='border-bottom:1px solid #000000;'>$" . $product->getPrice() . "</td>
-			<td style='border-bottom:1px solid #000000;'>" . $product->getDesc() . "</td>
-		</tr>";
-	}
-	echo "</table>";
+	$_SESSION['products']->displayProducts();
 }
 
 echo $footer;
-
-?>

@@ -77,6 +77,7 @@ class Product
 				<form action='./index.php?view_product=".$this->getProductId()." method='post'>
 					<input name='quantity' type='number' min='1' value='1' required>
 					<input type='hidden' name='product_id' value=" . $this->getProductId() . " />
+					<input type='hidden' name='view_cart' value='TRUE' />
 					<input type='submit' name='add_to_cart' value='Add to cart' />
 				</form>
 			</p>
