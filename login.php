@@ -39,4 +39,11 @@ Password: <input type='password' name='password'><br>
 </form>
 ";
 
+echo "<form action='newUser.php' method='POST'>
+Don't have an account?  <input type='submit' value='Click Here'>  to create one.
+</form>
+";
+
+
+
 outputFooter();
