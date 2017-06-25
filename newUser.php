@@ -3,7 +3,11 @@
 require_once("layout.php");
 require_once("Customer.php");
 
-echo $header;
+if(!isset($_SESSION)) {
+    session_start();
+}
+
+outputHeader("Create Account", $_SESSION['user']->getUserId());
 
 if(!isset($_SESSION)) {
     session_start();
@@ -133,5 +137,5 @@ if(!isset($_SESSION)) {
 </html>
 
 <?php
-echo $footer;
+outputFooter();
 
