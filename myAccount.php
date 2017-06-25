@@ -17,7 +17,15 @@ echo "<table>
         <tr style='border-bottom:1px solid #000000;'>Address:&emsp;" . $_SESSION['user']->getAddress() . "</tr><br/><br/>
         <tr style='border-bottom:1px solid #000000;'>Phone Number:&emsp;" . $_SESSION['user']->getPhoneNumber() . "</tr><br/><br/>
         <tr style='border-bottom:1px solid #000000;'>Credit Card:&emsp;" . $_SESSION['user']->getCreditCard(). "</tr><br/><br/>
-    </table>				
+    </table>
+    <form action='./editAccount.php' method='post'>
+        <input type='hidden' name='user_id' value=" . $_SESSION['user']->getUserId(). " />
+        <input type='submit' name='edit_account' value='Edit Account' />
+	</form>			
+	<form action='./changePassword.php' method='post'>
+        <input type='hidden' name='user_id' value=" . $_SESSION['user']->getUserId(). " />
+        <input type='submit' name='change_password' value='Change Password' />
+	</form>	
     <form action='./viewTransactionHistory.php' method='post'>
         <input type='hidden' name='user_id' value=" . $_SESSION['user']->getUserId(). " />
         <input type='submit' name='view_history' value='View Transaction History' />
