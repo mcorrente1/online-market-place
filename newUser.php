@@ -43,7 +43,7 @@
         if (empty($_POST["fName"])) {
             $fNameErr = "First name is required";
             $isValid = false;
-        } elseif (!preg_match("/^[^0-9!@#$%^&*()\-_=+]*[a-zA-Z]+[^0-9!@#$%^&*()\-_=+]*$/", $fName)) {
+        } elseif (!preg_match("/^[^0-9!@#$%^&*()\-_=+]*[a-zA-Z]+[^0-9!@#$%^&*()\-_=+]*$/", $_POST["fName"])) {
             $fNameErr = "Can only contain letters; No numbers or special characters";
             $isValid = false;
         } else {
@@ -52,7 +52,7 @@
         if (empty($_POST["lName"])) {
             $lNameErr = "Last name is required";
             $isValid = false;
-        } elseif(!preg_match("/^[^0-9!@#$%^&*()\-_=+]*[a-zA-Z]+[^0-9!@#$%^&*()\-_=+]*$/", $lName)) {
+        } elseif(!preg_match("/^[^0-9!@#$%^&*()\-_=+]*[a-zA-Z]+[^0-9!@#$%^&*()\-_=+]*$/", $_POST["lName"])) {
             $lNameErr = "Can only contain letters; No numbers or special characters";
             $isValid = false;
         } else {
@@ -61,7 +61,7 @@
         if (empty($_POST["email"])) {
             $emailErr = "Email is required";
             $isValid = false;
-        } elseif(!preg_match("/^[a-zA-Z]++[0-9a-zA-Z]*+[@][a-zA-Z]++[.](com|net|org)$/", $email)) {
+        } elseif(!preg_match("/^[a-zA-Z]++[0-9a-zA-Z]*+[@][a-zA-Z]++[.](com|net|org)$/", $_POST["email"])) {
             $emailErr = "Email must be valid";
             $isValid = false;
         } else {
@@ -89,7 +89,7 @@
         }
         /* phone number pattern allows for any combo of the following formats: (xxx) xxx-xxxx;
          xxxxxxx; xxx-xxx-xxxx; xxx xxx xxxx */
-        elseif(!preg_match("/^[(]*[0-9]{3}[)\- ]*+[0-9]{3}[- ]*+[0-9]{4}$/", $phoneNum)) {
+        elseif(!preg_match("/^[(]*[0-9]{3}[)\- ]*+[0-9]{3}[- ]*+[0-9]{4}$/", $_POST["phoneNum"])) {
             $phoneNumErr = "Not a valid phone number";
             $isValid = false;
         } else {
@@ -101,7 +101,7 @@
         }
         /* address pattern allows users to enter commas, or just spaces; address does need
         to end with 2 consecutive letters, followed by 5 consecutive digits (for state, zip--code) */
-        elseif(!preg_match("/^[0-9]+[ #.0-9a-zA-Z]+[,]*[ a-zA-Z]+[, ]*[a-zA-Z]{2}[ ][0-9]{5}$/", $address)) {
+        elseif(!preg_match("/^[0-9]+[ #.0-9a-zA-Z]+[,]*[ a-zA-Z]+[, ]*[a-zA-Z]{2}[ ][0-9]{5}$/", $_POST["address"])) {
             $addressErr = "Not a valid address";
             $isValid = false;
         } else {
