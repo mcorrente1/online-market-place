@@ -133,8 +133,9 @@ if(!isset($_SESSION)) {
         <input type="text" name="address" placeholder="Address" value="<?php echo $address; ?>"add><span style="color:red">* <?php echo $addressErr;?></span><br><br/>
         <input type="submit" name="submit" value="Submit">
     </form>
-</body>
-</html>
+
+    <form action='login.php' method='POST'>Allready have an account?  <input type='submit' value='Click Here'>  to sign in.
+    </form>
 
 <?php
 outputFooter();
