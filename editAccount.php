@@ -1,12 +1,12 @@
 <?php
 require_once("layout.php");
-
-
-echo $header;
+require_once("Customer.php");
 
 if(!isset($_SESSION)) {
     session_start();
 }
+
+outputHeader("Edit Account", $_SESSION['user']->getUserId());
 
 require_once("Customer.php");
 require("DatabaseConnection.php");
@@ -108,4 +108,4 @@ echo "<form action=".htmlspecialchars($_SERVER['PHP_SELF'])." method='POST'>
  </form> ";
 
 
-echo $footer;
+outputFooter();

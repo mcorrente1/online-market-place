@@ -3,11 +3,11 @@ require_once("layout.php");
 require("DatabaseConnection.php");
 require_once("Customer.php");
 
-echo $header;
-
 if(!isset($_SESSION)) {
     session_start();
 }
+
+outputHeader("Log In", $_SESSION['user']->getUserId());
 
 $db = new DatabaseConnection();
 $email = "";
@@ -39,5 +39,4 @@ Password: <input type='password' name='password'><br>
 </form>
 ";
 
-
-echo $footer;
+outputFooter();

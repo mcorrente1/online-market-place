@@ -1,14 +1,13 @@
 <?php
 
-require_once("layout.php");
+require("layout.php");
 require_once("Customer.php");
-
-echo $header;
 
 if(!isset($_SESSION)) {
     session_start();
 }
 
+outputHeader("My Account", $_SESSION['user']->getUserId());
 
 echo "<table>
         <tr style='border-bottom:1px solid #000000;'>First Name:&emsp;" . $_SESSION['user']->getFirstName(). "</tr><br/><br/>
@@ -32,4 +31,4 @@ echo "<table>
 	</form>";
 
 
-echo $footer;
+outputFooter();

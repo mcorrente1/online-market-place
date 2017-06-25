@@ -1,14 +1,15 @@
 <?php
 require_once("layout.php");
+require_once("Customer.php");
+require("DatabaseConnection.php");
 
-
-echo $header;
 
 if(!isset($_SESSION)) {
     session_start();
 }
-require_once("Customer.php");
-require("DatabaseConnection.php");
+
+outputHeader("Change Password", $_SESSION['user']->getUserId());
+
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -85,4 +86,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </html>
 
 <?php
-echo $footer;
+outputFooter();

@@ -1,6 +1,13 @@
 <?php
-require("layout.php");
-echo $header;
+require_once("layout.php");
+require_once("Customer.php");
+
+if(!isset($_SESSION)) {
+    session_start();
+}
+
+outputHeader("Contact Us", $_SESSION['user']->getUserId());
+
 ?>
 		<div id='content'>
       Phone: (555) 555-555 <br>
@@ -32,13 +39,6 @@ echo $header;
 
   </div>
 </form>
-</body>
 
-
-
-
-
-
-
-
-</html>
+<?php
+outputFooter();

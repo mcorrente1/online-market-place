@@ -3,10 +3,18 @@
 require_once("Products.php");
 require_once("Cart.php");
 require("layout.php");
+require("Customer.php");
+
 
 if(!isset($_SESSION)) {
     session_start();
 }
+
+if (!isset($_SESSION['user'])) {
+    $_SESSION['user'] = new User();
+}
+
+outputHeader("Store", $_SESSION['user']->getUserId());
 
 if (!isset($_SESSION['products'])) {
     $_SESSION['products'] = new Products();
@@ -73,8 +81,6 @@ if(isset($_GET['remove_from_cart'])) {
 }
 
 // **DISPLAY PAGE**
-echo $header;
-
 echo $message;
 
 // View a product
@@ -162,4 +168,4 @@ else {
 	$_SESSION['products']->displayProducts();
 }
 
-echo $footer;
+outputFooter();
