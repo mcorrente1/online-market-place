@@ -43,22 +43,26 @@
         if (empty($_POST["fName"])) {
             $fNameErr = "First name is required";
             $isValid = false;
+        } elseif (!preg_match("/^[^0-9!@#$%^&*()\-_=+]*[a-zA-Z]+[^0-9!@#$%^&*()\-_=+]*$/", $_POST["fName"])) {
+            $fNameErr = "Can only contain letters; No numbers or special characters";
+            $isValid = false;
         } else {
             $fName = test_input($_POST["fName"]);
         }
-        #todo insert all error messages like so
-        #if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-            #$nameErr = "Only letters and white space allowed";
-            #$isValid = false;
-        #}
         if (empty($_POST["lName"])) {
             $lNameErr = "Last name is required";
+            $isValid = false;
+        } elseif(!preg_match("/^[^0-9!@#$%^&*()\-_=+]*[a-zA-Z]+[^0-9!@#$%^&*()\-_=+]*$/", $_POST["lName"])) {
+            $lNameErr = "Can only contain letters; No numbers or special characters";
             $isValid = false;
         } else {
             $lName = test_input($_POST["lName"]);
         }
         if (empty($_POST["email"])) {
             $emailErr = "Email is required";
+            $isValid = false;
+        } elseif(!preg_match("/^[a-zA-Z]++[0-9a-zA-Z]*+[@][a-zA-Z]++[.](com|net|org)$/", $_POST["email"])) {
+            $emailErr = "Email must be valid";
             $isValid = false;
         } else {
             $email = test_input($_POST["email"]);
@@ -82,11 +86,23 @@
         if (empty($_POST["phoneNum"])) {
             $phoneNumErr = "Phone number is required";
             $isValid = false;
+        }
+        /* phone number pattern allows for any combo of the following formats: (xxx) xxx-xxxx;
+         xxxxxxx; xxx-xxx-xxxx; xxx xxx xxxx */
+        elseif(!preg_match("/^[(]*[0-9]{3}[)\- ]*+[0-9]{3}[- ]*+[0-9]{4}$/", $_POST["phoneNum"])) {
+            $phoneNumErr = "Not a valid phone number";
+            $isValid = false;
         } else {
             $phoneNum = test_input($_POST["phoneNum"]);
         }
         if (empty($_POST["address"])) {
             $addressErr = "Address is required";
+            $isValid = false;
+        }
+        /* address pattern allows users to enter commas, or just spaces; address does need
+        to end with 2 consecutive letters, followed by 5 consecutive digits (for state, zip--code) */
+        elseif(!preg_match("/^[0-9]+[ #.0-9a-zA-Z]+[,]*[ a-zA-Z]+[, ]*[a-zA-Z]{2}[ ][0-9]{5}$/", $_POST["address"])) {
+            $addressErr = "Not a valid address";
             $isValid = false;
         } else {
             $address = test_input($_POST["address"]);
