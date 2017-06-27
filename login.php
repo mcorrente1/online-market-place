@@ -18,7 +18,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) ) {
     if ($result && $result->num_rows == 1) {
         $row = $result->fetch_array();
         unset($_SESSION['user']);
-        $_SESSION['user'] = new Customer($row["userId"],$row["firstName"], $row["lastName"],$row["creditCard"],$row["email"],$row["address"],$row["phone"]);
+        $_SESSION['user'] = new Customer($row["userId"],$row["firstName"], $row["lastName"],$row["email"],$row["address"],$row["phone"]);
         header('Location:/online-marketplace/index.php');
     }
     else {
