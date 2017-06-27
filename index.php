@@ -134,7 +134,6 @@ else if(isset($_GET['checkout'])) {
 		echo "Your cart is empty.<br />";
 	}
 	else {
-    $recipt = "Name, Item Price, Quantity, Cost";
 		echo "<form action='./index.php?checkout=1' method='post'>
 		<table style='width:500px;' cellspacing='0'>
 				<tr>
@@ -157,13 +156,19 @@ else if(isset($_GET['checkout'])) {
 						<td style='border-bottom:1px solid #000000;'>" . $cartItem->getQuantity() . "</td>
 						<td style='border-bottom:1px solid #000000;'>$" . ($cartItem->getProductPrice() * $cartItem->getQuantity()) . "</td>
 					  </tr>";
-            $recipt .= $cartItem->getProductPrice() . ", " . $cartItem->getQuantity() . ", " . ($cartItem->getProductPrice() * $cartItem->getQuantity());
+            $receipt .= $cartItem->getProductName() . "  $" .$cartItem->getProductPrice() . " x" . $cartItem->getQuantity() . " = $" . ($cartItem->getProductPrice() * $cartItem->getQuantity()) . "<br/>";
 				}
 			echo "</table>
-			<p>Total price: $" . $total_price . "</p>";
-      $recipt .= ", " $total_price
+			<p>Total price: $" . $total_price . "</p></form>";
+      $receipt .=  "<br/>". "Total Price: $". $total_price;
 
 
+        echo "<form action='billingInfo.php' method='POST'>
+        <input type='hidden' name='launchParameter' value='initial'/>
+        <input type='hidden' name='receipt' value='".$receipt."'/>
+        <input type='submit' value='Billing Info'>
+        </form>
+        ";
 	}
 }
 // View all products
