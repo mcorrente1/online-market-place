@@ -156,7 +156,7 @@ else if(isset($_GET['checkout'])) {
 						<td style='border-bottom:1px solid #000000;'>" . $cartItem->getQuantity() . "</td>
 						<td style='border-bottom:1px solid #000000;'>$" . ($cartItem->getProductPrice() * $cartItem->getQuantity()) . "</td>
 					  </tr>";
-            $receipt .= $cartItem->getProductName() . "  $" .$cartItem->getProductPrice() . " x" . $cartItem->getQuantity() . " = $" . ($cartItem->getProductPrice() * $cartItem->getQuantity()) . "<br/>";
+            $receipt = $cartItem->getProductName() . "  $" .$cartItem->getProductPrice() . " x" . $cartItem->getQuantity() . " = $" . ($cartItem->getProductPrice() * $cartItem->getQuantity()) . "<br/>";
 				}
 			echo "</table>
 			<p>Total price: $" . $total_price . "</p></form>";
