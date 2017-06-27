@@ -134,6 +134,7 @@ else if(isset($_GET['checkout'])) {
 		echo "Your cart is empty.<br />";
 	}
 	else {
+    $recipt = "Name, Item Price, Quantity, Cost";
 		echo "<form action='./index.php?checkout=1' method='post'>
 		<table style='width:500px;' cellspacing='0'>
 				<tr>
@@ -155,10 +156,13 @@ else if(isset($_GET['checkout'])) {
 						<td style='border-bottom:1px solid #000000;'>$" . $cartItem->getProductPrice() . "</td>
 						<td style='border-bottom:1px solid #000000;'>" . $cartItem->getQuantity() . "</td>
 						<td style='border-bottom:1px solid #000000;'>$" . ($cartItem->getProductPrice() * $cartItem->getQuantity()) . "</td>
-					</tr>";
+					  </tr>";
+            $recipt .= $cartItem->getProductPrice() . ", " . $cartItem->getQuantity() . ", " . ($cartItem->getProductPrice() * $cartItem->getQuantity());
 				}
 			echo "</table>
 			<p>Total price: $" . $total_price . "</p>";
+      $recipt .= ", " $total_price
+
 
 	}
 }

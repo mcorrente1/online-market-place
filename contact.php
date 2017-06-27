@@ -1,7 +1,7 @@
 <?php
 require_once("layout.php");
 require_once("Customer.php");
-require("mailer.php")
+require("mailer.php");
 
 if(!isset($_SESSION)) {
     session_start();
@@ -10,6 +10,7 @@ if(!isset($_SESSION)) {
 outputHeader("Contact Us", $_SESSION['user']->getUserId());
 
 ?>
+
 <h3> Send us message we would love to here from you </h3>
 <form id="ajax-contact" method="post">
 <div class="field">
@@ -43,4 +44,4 @@ outputHeader("Contact Us", $_SESSION['user']->getUserId());
       <br>
 
 <?php
-outputFooter();
+outputFooter(); ?>
