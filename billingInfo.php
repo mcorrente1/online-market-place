@@ -2,6 +2,7 @@
 require_once("layout.php");
 require_once("DatabaseConnection.php");
 require_once("Customer.php");
+require_once("mailer.php");
 
 if(!isset($_SESSION)) {
     session_start();
@@ -50,7 +51,6 @@ else {
         $email = $_SESSION['user']->getEmail();
         $address = $_SESSION['user']->getAddress();
         $phoneNum = $_SESSION['user']->getPhoneNumber();
-        $creditCard = $_SESSION['user']->getCreditCard();
     }
 
 
@@ -169,8 +169,8 @@ else {
                 #obtain userId, will be -1 for guest, or will be of the new account that was created, or will be currently logged in id
                 $userId = $_SESSION['user']->getUserId();
 
-                //insert into receipts (userID, date, contents) values  ("-1" , now(), 'asaasdfljasdlfjadslkjflkdsajfladsjflsdjlfadjsfasdf');
                 if ($db->queryDB("INSERT INTO receipts (userId, date, contents) values ('" . $userId . "', now(), '".$_SESSION['receipt']."');")) {
+                    sendEmail($_SESSION['user']->getEmail(), "Rogue Soda Confirmation", $_SESSION['receipt']);
                     header('Location:/online-marketplace/thankYou.php');
                 } else {
                     #todo display error if something goes wrong
