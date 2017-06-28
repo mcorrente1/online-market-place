@@ -1,7 +1,7 @@
 <?php
 require_once("layout.php");
 require_once("Customer.php");
-require_once("mailer.php");
+require("mailer.php");
 
 if(!isset($_SESSION)) {
     session_start();
@@ -35,7 +35,6 @@ outputHeader("Contact Us", $_SESSION['user']->getUserId());
 </div>
 </form>
 
-
     <div id='content'>
       <b>Phone</b>: (555) 555-555 <br>
       <b>Fax:</b> (555) 555-555 <br>
@@ -45,35 +44,4 @@ outputHeader("Contact Us", $_SESSION['user']->getUserId());
       <br>
 
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-       // Get the form fields and remove whitespace.
-       $name = strip_tags(trim($_POST["name"]));
-       $name = str_replace(array("\r","\n"),array(" "," "),$name);
-       $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-       $message = trim($_POST["message"]);
-
-       // Check that data was sent to the mailer.
-       if ( empty($name) OR empty($message) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-           // Set a 400 (bad request) response code and exit.
-           http_response_code(400);
-           echo "Oops! There was a problem with your submission. Please complete the form and try again.";
-           exit;
-       }
-
-       // Set the recipient email address.
-       // FIXME: Update this to your desired email address.
-       $recipient = "hello@example.com";
-
-       // Set the email subject.
-       $subject = "New contact from $name";
-
-       // Build the email content.
-       $email_content  = "Name: $name\n";
-       $email_content .= "Email: $email\n\n";
-       $email_content .= "Message:\n$message\n";
-
-
-       // Send the email.
-       sendEmail($recipient,$subject, $email_content);
-}
 outputFooter(); ?>

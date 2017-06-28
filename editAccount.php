@@ -22,8 +22,8 @@ if (isset($_GET["success"])) {
 }
 
 // define variables and set to empty values
-$fNameErr = $lNameErr = $emailErr = $phoneNumErr = $addressErr = $creditCardErr = "";
-$fName = $lName = $email = $phoneNum = $address = $creditCard = "";
+$fNameErr = $lNameErr = $emailErr = $phoneNumErr = $addressErr = "";
+$fName = $lName = $email = $phoneNum = $address  = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $isValid = true;
 
@@ -63,30 +63,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $address = test_input($_POST["address"]);
     }
-//    if (empty($_POST["creditCard"])) {
-//        $creditCardErr = "Credit Card is required";
-//        $isValid = false;
-//    } else {
-//        $creditCard = test_input($_POST["creditCard"]);
-//    }
-    if (empty($_POST["creditCard"])) {  #todo maybe not handle users credit card info
-        $creditCard = "";
-
-    } else {
-        $creditCard = test_input($_POST["creditCard"]);
-    }
 
     if($isValid){
 
         $db = new DatabaseConnection();
 
-        if ($db->queryDB("UPDATE users SET firstName = '". $fName ."', lastName = '". $lName ."', creditCard = '". $creditCard ."', email = '". $email ."', phone = '". $phoneNum ."', address = '". $address ."' WHERE userId = '".$_SESSION['user']->getUserId()."';")){
+        if ($db->queryDB("UPDATE users SET firstName = '". $fName ."', lastName = '". $lName ."', email = '". $email ."', phone = '". $phoneNum ."', address = '". $address ."' WHERE userId = '".$_SESSION['user']->getUserId()."';")){
 
             # log in new user
             $result = $db->queryDB("SELECT * FROM users WHERE userId = '".  $_SESSION['user']->getUserId()."';");
             $row = $result->fetch_array();
             unset($_SESSION['user']);
-            $_SESSION['user'] = new Customer($row['userId'], $row['firstName'], $row['lastName'], $row['creditCard'], $row['email'], $row['address'], $row['phone']);
+            $_SESSION['user'] = new Customer($row['userId'], $row['firstName'], $row['lastName'], $row['email'], $row['address'], $row['phone']);
             header('Location:/online-marketplace/editAccount.php?success=TRUE');
         }
         else {
@@ -103,7 +91,6 @@ echo "<form action=".htmlspecialchars($_SERVER['PHP_SELF'])." method='POST'>
  Email:&emsp;<input type='text' name='email' value='".$_SESSION['user']->getEmail()."'><span style='color:red'>* ".$emailErr."</span><br><br>
  Address:&emsp;<input type='text' name='address' value='".$_SESSION['user']->getAddress()."'><span style='color:red'>* ".$addressErr."</span><br><br>
  Phone Number:&emsp;<input type='text' name='phoneNumber' value='".$_SESSION['user']->getPhoneNumber()."'><span style='color:red'>* ".$phoneNumErr." </span><br><br>
- CreditCard:&emsp;<input type='text' name='creditCard' value='".$_SESSION['user']->getCreditCard()."'><span style='color:red'>* " .$creditCardErr. "</span><br><br>
 <input type='submit' name='submit' value='Submit'>
  </form> ";
 

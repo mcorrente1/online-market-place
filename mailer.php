@@ -1,5 +1,7 @@
 <?php
 
+    // Only process POST reqeusts.
+
     function sendEmail($recipient, $subject, $msg)
     {
       if (mail($recipient, $subject, $msg))
@@ -24,4 +26,7 @@
           echo "Oops! Something went wrong and we couldn't send your message.";
       }
     }
+
+
+
 ?>
