@@ -31,7 +31,7 @@ function outputHeader($title, $id)
     
             </div>
             <div id='content'>
-                <p style='text-align:right;'><a href='./index.php?view_cart=1'>View Cart</a></p>
+                <p><a href='./index.php?view_cart=1'>View Cart</a></p>
     ";
 
 }

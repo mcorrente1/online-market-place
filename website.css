@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-	background-color: #d16666;
+    background: rgba(209, 102, 102, 0.51) url("./soda.jpg") no-repeat fixed center;
 }
 label{
     display: inline-block;
@@ -35,23 +35,23 @@ input {
 	margin-right:auto;
 
 	padding:0px;
+
+    font-family: 'Raleway', sans-serif;
 }
 #header {
-	background-color:#000000;
-	border-bottom:1px solid #303030;
-	padding-top:5px;
+    background: rgba(0, 0, 0, 0.85);
+    border-bottom:1px solid #303030;
+    padding-top:5px;
 }
 #header h2 {
 	margin:0px;
-	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	color:#d16666;
 }
 
-
 #content {
 	padding:5px;
+    text-align: right;
 }
-
 
 a, a:visited {
 	color:#d16666;
@@ -61,9 +61,7 @@ a:hover {
 	color:#d16666;
 }
 
-
 .nav_button {
-
     border-radius: 8px;
     background-color: #000000;
     border: none;
@@ -79,18 +77,14 @@ a:hover {
 
     cursor: pointer;
 }
-
 .nav_buttonA:hover {
     background-color: white;
     color: black;
-    border: 2px solid #000000;
 }
-
 .nav_buttonA {
     background-color: #000000;
     color: white;
 }
-
 
 .textarea {
 		    width: 100%;
@@ -102,6 +96,19 @@ a:hover {
 		    background-color: #f8f8f8;
 		    font-size: 16px;
 		    resize: none;
-		}
+}
 
+#displayProductsTable {
+    width: 650px;
+}
+td.productPrice, td.productDesc {
+    border-bottom: 3px solid #d16666;
+}
+td.productPrice {
+    text-align: center;
+    font-weight: bold;
+}
+td.productDesc {
+    text-align:center;
+    padding-left:15px;
 }

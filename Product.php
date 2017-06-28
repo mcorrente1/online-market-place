@@ -89,10 +89,10 @@ class Product
         // Display product
         #todo also make sure that hyperlink is correct
         echo "<tr>
-			<td><img src=".$this->getImagePath()." alt=". $this->getName() ."height='304' width='228'\"></td>
-			<td style='border-bottom:1px solid #000000;'><a href='./index.php?view_product=". $this->getProductId() ."'>" . $this->getName() . "</a></td>
-			<td style='border-bottom:1px solid #000000;'>$" . $this->getPrice() . "</td>
-			<td style='border-bottom:1px solid #000000;'>" . $this->getDesc() . "</td>
+			<td class='productPic'><img src=".$this->getImagePath()." alt=". $this->getName() ." height='342' width='171'\"></td>
+			<td class='productLink'><a href='./index.php?view_product=". $this->getProductId() ."'>" . $this->getName() . "</a></td>
+			<td class='productPrice'>$" . $this->getPrice() . "</td>
+			<td class='productDesc'>" . $this->getDesc() . "</td>
 		</tr>";
 
 

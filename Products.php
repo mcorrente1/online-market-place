@@ -70,7 +70,7 @@ class Products{
     function displayProducts()
     {
 
-        echo "<table id =  style='width:500px;' cellspacing='0' >";
+        echo "<table id='displayProductsTable' cellpadding='10' cellspacing='0' >";
         echo "<p><button onclick='sortTable()'>Sort</button></p>";
 
         // Loop to display all products
