@@ -90,10 +90,11 @@ if(!isset($_SESSION)) {
         }
         /* address pattern allows users to enter commas, or just spaces; address does need
         to end with 2 consecutive letters, followed by 5 consecutive digits (for state, zip--code) */
-        elseif(!preg_match("/^[0-9]+[ #.0-9a-zA-Z]+[,]*[ a-zA-Z]+[, ]*[a-zA-Z]{2}[ ][0-9]{5}$/", $_POST["address"])) {
-            $addressErr = "Not a valid address";
-            $isValid = false;
-        } else {
+//        elseif(!preg_match("/^[0-9]+[ #.0-9a-zA-Z]+[,]*[ a-zA-Z]+[, ]*[a-zA-Z]{2}[ ][0-9]{5}$/", $_POST["address"])) {
+//            $addressErr = "Not a valid address";
+//            $isValid = false;
+//        }
+        else {
             $address = test_input($_POST["address"]);
         }
 
