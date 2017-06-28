@@ -71,7 +71,7 @@ class Products{
     {
 
         echo "<table id='displayProductsTable' cellpadding='10' cellspacing='0' >";
-        echo "<p><button onclick='sortTable()'>Sort</button></p>";
+        //echo "<p><button onclick='sortTable()'>Sort</button></p>";
 
         // Loop to display all products
         foreach($this->products as $product) {
