@@ -8,7 +8,7 @@ if(!isset($_SESSION)) {
 outputHeader("Contact Us", $_SESSION['user']->getUserId());
 ?>
 
-<h3> Send us message we would love to here from you </h3>
+<h3> Send us a message, we would love to here from you! </h3>
 <form id="ajax-contact" method="post">
     <div class="field">
         <label for="name">Name:</label>
@@ -29,11 +29,11 @@ outputHeader("Contact Us", $_SESSION['user']->getUserId());
         <button type="submit">Send</button>
     </div>
 
-    </div>
 </form>
 
 
-<div id='content'>
+<div id='content2'>
+    <br><br><br>
     <b>Phone</b>: (555) 555-555 <br>
     <b>Fax:</b> (555) 555-555 <br>
     <b>Email:</b> website@website.com <br>

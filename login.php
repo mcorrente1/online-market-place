@@ -32,18 +32,17 @@ if(isset($_GET["retry"])){
 }
 
 
-echo "<form action='#' method='POST'>
-Email: <input type='text' name='email' value='".$email."'><br>
-Password: <input type='password' name='password'><br>
-<input type='submit'>
+echo "<form id='loginInfo' action='#' method='POST'>
+Email: <br><input type='text' name='email' value='".$email."'><br><br>
+Password: <br><input type='password' name='password'><br><br>
+<input type='submit'><br><br><br><br><br>
 </form>
 ";
 
-echo "<form action='newUser.php' method='POST'>
-Don't have an account?  <input type='submit' value='Click Here'>  to create one.
+echo "<form id='createAccount' action='newUser.php' method='POST'>
+Don't have an account?<br><input type='submit' value='Click Here'> to create one.
 </form>
 ";
-
 
 
 outputFooter();

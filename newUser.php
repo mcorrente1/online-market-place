@@ -121,21 +121,23 @@ if(!isset($_SESSION)) {
         }//end isValid
     }
     ?>
-
+    <div id="userForm">
     <span style="color:red">* required field.</span><br><br/>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-        <input type="text" name="fName" placeholder="First Name" value="<?php echo $fName; ?>"><span style="color:red">* <?php echo $fNameErr;?></span><br><br/>
-        <input type="text" name="lName" placeholder="Last Name" value="<?php echo $lName; ?>"><span style="color:red">* <?php echo $lNameErr;?></span><br><br/>
-        <input type="email" name="email" placeholder="Your Email" value="<?php echo $email; ?>"><span style="color:red">* <?php echo $emailErr;?></span><br><br/>
-        <input type="password" name="password" placeholder="Password"><span style="color:red">* <?php echo $passwordErr;?></span><br><br/>
-        <input type="password" name="confirmPassword" placeholder="Confirm Password"><span style="color:red">* <?php echo $confirmPasswordErr;?></span><br><br/>
-        <input type="tel" name="phoneNum" placeholder="Phone Number" value="<?php echo $phoneNum; ?>"><span style="color:red">* <?php echo $phoneNumErr;?></span><br><br/>
-        <input type="text" name="address" placeholder="Address" value="<?php echo $address; ?>"add><span style="color:red">* <?php echo $addressErr;?></span><br><br/>
+        <input type="text" name="fName" placeholder="First Name" value="<?php echo $fName; ?>">* <?php echo $fNameErr;?><br><br/>
+        <input type="text" name="lName" placeholder="Last Name" value="<?php echo $lName; ?>">* <?php echo $lNameErr;?><br><br/>
+        <input type="email" name="email" placeholder="Your Email" value="<?php echo $email; ?>">* <?php echo $emailErr;?><br><br/>
+        <input type="password" name="password" placeholder="Password">* <?php echo $passwordErr;?><br><br/>
+        <input type="password" name="confirmPassword" placeholder="Confirm Password">* <?php echo $confirmPasswordErr;?><br><br/>
+        <input type="tel" name="phoneNum" placeholder="Phone Number" value="<?php echo $phoneNum; ?>">* <?php echo $phoneNumErr;?><br><br/>
+        <input type="text" name="address" placeholder="Address" value="<?php echo $address; ?>">* <?php echo $addressErr;?><br><br/>
         <input type="submit" name="submit" value="Submit">
     </form>
-
-    <form action='login.php' method='POST'>Allready have an account?  <input type='submit' value='Click Here'>  to sign in.
+    </div>
+    <div id="userForm2">
+    <form action='login.php' method='POST'><br><br>Already have an account?<br><input type='submit' value='Click Here'> to sign in.
     </form>
+    </div>
 
 <?php
 outputFooter();
