@@ -91,7 +91,7 @@ if(isset($_GET['view_product'])) {
 	if($_SESSION['products']->checkExists($product_id)) {
 		// Display site links
 		echo "<p>
-			<a href='./index.php'>Back</a>";
+			<a href='./index.php'>Back</a></p><br><br>";
 
 		// Display product
 		$_SESSION['products']->displayProductForPurchase($product_id);

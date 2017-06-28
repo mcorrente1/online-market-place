@@ -22,6 +22,7 @@ outputHeader("Contact Us", $_SESSION['user']->getUserId());
 
     <div class="field">
         <label for="message">Message:</label>
+        <br><br>
         <textarea id="message" name="message" required></textarea>
     </div>
 

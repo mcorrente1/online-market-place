@@ -68,20 +68,30 @@ class Product
     //used to after user clicks on a product, this function provides ability to add to cart??
     public function viewProduct(){
         // Display product
-        echo "<p>
-			<span style='font-weight:bold;'>" . $this->getName() . "</span><br />
-			<span><img src=".$this->getImagePath()." alt=". $this->getName() ."height='700' width='500'\"></span><br/>
-			<span>$" . $this->getPrice() . "</span><br />
-			<span>" . $this->getDesc() . "</span><br />
-			<p>
-				<form action='./index.php?view_product=".$this->getProductId()." method='post'>
-					<input name='quantity' type='number' min='1' value='1' required>
-					<input type='hidden' name='product_id' value=" . $this->getProductId() . " />
-					<input type='hidden' name='view_cart' value='TRUE' />
-					<input type='submit' name='add_to_cart' value='Add to cart' />
-				</form>
-			</p>
-		</p>";
+        echo "<table id='viewProductTable' cellspacing='10'>
+            <tr><td></td></tr>
+            <tr>
+                <td>
+			        <img src=".$this->getImagePath()." alt=". $this->getName() ." height='342' width='171'\">
+			    </td>
+			    <td class='productInfo'>
+			        <span>" . $this->getName() . "</span>
+			        <br><br><br><br>
+			        <span>$" . $this->getPrice() . "</span><br><br><br>
+			        <span>" . $this->getDesc() . "</span>
+			    </td>
+			    <td class='productPurchase'>
+			    <p>
+				    <form action='./index.php?view_product=".$this->getProductId()." method='post'>
+					    <input name='quantity' type='number' min='1' value='1' required>
+					    <input type='hidden' name='product_id' value=" . $this->getProductId() . " />
+					    <input type='hidden' name='view_cart' value='TRUE' />
+					    <input type='submit' name='add_to_cart' value='Add to cart' />
+				    </form>
+			    </p>
+			    </td>
+			</tr>
+		</table>";
     }
 
     public function display(){

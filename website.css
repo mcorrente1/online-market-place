@@ -112,6 +112,16 @@ td.productDesc {
     text-align:center;
     padding-left:15px;
 }
+#viewProductTable {
+    text-align: center;
+}
+td.productInfo {
+    font-weight:bold;
+}
+td.productPurchase {
+    vertical-align: middle;
+    padding-left: 20px;
+}
 
 /*Home page*/
 h2.w3-center {
@@ -150,9 +160,12 @@ img.mySlides {
 }
 
 /*Contact page (contact.php)*/
-#ajax-contact {}
-div.field {}
+#ajax-contact {
+}
+div.field {
+}
 #content2 {
     text-align: left;
     padding-left: 10px;
 }
+
