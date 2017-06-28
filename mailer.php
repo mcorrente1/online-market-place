@@ -6,7 +6,7 @@
       {
           // Set a 200 (okay) response code.
           http_response_code(200);
-          if(strcmp($recipient, 'sts.shahabuddin@gmail.com') == 0)
+          if(strcmp($recipient, 'hello@example.com') == 0)
           {
             echo "Thank you! Your message has been sent";
           }
