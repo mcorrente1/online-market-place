@@ -161,7 +161,7 @@ else if(isset($_GET['checkout'])) {
 				}
 			echo "</table>
 			<p>Total price: $" . $total_price . "</p>";
-      $recipt .= ", " $total_price;
+      $recipt .= ", " . $total_price;
 
 
 	}
