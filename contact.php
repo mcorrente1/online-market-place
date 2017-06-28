@@ -35,9 +35,9 @@ outputHeader("Contact Us", $_SESSION['user']->getUserId());
 
 <div id='content2'>
     <br><br><br>
-    <b>Phone</b>: (555) 555-555 <br>
-    <b>Fax:</b> (555) 555-555 <br>
-    <b>Email:</b> website@website.com <br>
+    <b>Phone</b>: (949) 555-3324 <br>
+    <b>Fax:</b> (949) 111-9383 <br>
+    <b>Email:</b> ceo@rougesoda.com <br>
     <b>Address:</b> 3042 Lost Way, Grand City, CA 91234
     <br>
     <br>
