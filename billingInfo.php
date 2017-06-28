@@ -171,7 +171,7 @@ else {
 
                 if ($db->queryDB("INSERT INTO receipts (userId, date, contents) values ('" . $userId . "', now(), '".$_SESSION['receipt']."');")) {
                     sendEmail($_SESSION['user']->getEmail(), "Rogue Soda Confirmation", $_SESSION['receipt']);
-                    header('Location:/online-marketplace/thankYou.php');
+                    header('Location:/online-marketplace/index.php?thankYou=TRUE&view_cart=TRUE&empty_cart=1');
                 } else {
                     #todo display error if something goes wrong
                 }
@@ -181,11 +181,11 @@ else {
 
 
         echo "<form action=" . htmlspecialchars($_SERVER['PHP_SELF']) . " method='POST'>
-         First Name:&emsp;<input type='text' name='fName' value='" . $fName . "'><span style='color:red'>* " . $fNameErr . "</span><br><br>
-         Last Name:&emsp;<input type='text' name='lName' value='" . $lName . "'><span style='color:red'>* " . $lNameErr . "</span><br><br>
-         Email:&emsp;<input type='text' name='email' value='" . $email . "'><span style='color:red'>* " . $emailErr . "</span><br><br>
-         Address:&emsp;<input type='text' name='address' value='" . $address . "'><span style='color:red'>* " . $addressErr . "</span><br><br>
-         Phone Number:&emsp;<input type='text' name='phoneNumber' value='" . $phoneNum . "'><span style='color:red'>* " . $phoneNumErr . " </span><br><br>
+         <input placeholder='First Name' type='text' name='fName' value='" . $fName . "'><span style='color:red'>* " . $fNameErr . "</span><br><br>
+         <input placeholder='Last Name' type='text' name='lName' value='" . $lName . "'><span style='color:red'>* " . $lNameErr . "</span><br><br>
+         <input placeholder='Email' type='text' name='email' value='" . $email . "'><span style='color:red'>* " . $emailErr . "</span><br><br>
+         <input placeholder='Address' type='text' name='address' value='" . $address . "'><span style='color:red'>* " . $addressErr . "</span><br><br>
+         <input placeholder='Phone Number' type='text' name='phoneNumber' value='" . $phoneNum . "'><span style='color:red'>* " . $phoneNumErr . " </span><br><br>
           <div class='form-header'>
                 <h4 class='title'>Credit Card Details</h4>
             </div>

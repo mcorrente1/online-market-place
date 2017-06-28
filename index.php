@@ -29,6 +29,9 @@ if(!isset($_SESSION['shopping_cart'])) {
 if(isset($_GET['empty_cart'])) {
     unset($_SESSION['shopping_cart']);
 	$_SESSION['shopping_cart'] = new Cart();
+	if(isset($_GET['thankYou'])) {
+        header('Location:/online-marketplace/thankYou.php');
+    }
 }
 
 // **PROCESS FORM DATA**

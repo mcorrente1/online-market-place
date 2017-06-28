@@ -5,14 +5,14 @@ function sendEmail($recipient, $subject, $msg)
     {
         // Set a 200 (okay) response code.
         http_response_code(200);
-        if(strcmp($recipient, 'sts.shahabuddin@gmail.com') == 0)
-        {
-            echo "Thank you! Your message has been sent";
-        }
-        else
-        {
-            echo "Thank you for your purchase! A confirmation of this purchase has been sent to your email";
-        }
+        //if(strcmp($recipient, 'sts.shahabuddin@gmail.com') == 0)
+        //{
+            echo "<h3>Thank you! Your message has been sent.</h3>";
+        //}
+//        else
+//        {
+//            echo "Thank you for your purchase! A confirmation of this purchase has been sent to your email";
+//        }
     }
     else
     {
