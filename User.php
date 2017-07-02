@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class Name: User
  * Date: 07/27/17

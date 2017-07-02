@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class Name: Products
  * Date: 07/27/17
@@ -10,7 +9,7 @@
  * to be passed in. First, a connection to the database is created and then a query is sent to select everything from
  * the PRODUCTS table. Every returned row is looped through and product objects are then instantiated and added to the
  * products array to the location based on their product id.
- * Another important function is the display, which uses a foreach loop structure to output each product in the products
+ * Another important function is the display, which uses a foreach loop structure to output each product from the products
  * array to an HTML table.
  * Important data structures: Array-used to manage all of the products
  * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required

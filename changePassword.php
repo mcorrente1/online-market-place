@@ -1,4 +1,14 @@
 <?php
+/**
+ * Class Name: none
+ * Date: 07/27/17
+ * Programmer: Matthew Corrente
+ * Description: This module is used to change a user’s password
+ * Explanation of important functions: none
+ * Important data structures: None.
+ * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
+ */
+
 require_once("layout.php");
 require_once("Customer.php");
 require("DatabaseConnection.php");

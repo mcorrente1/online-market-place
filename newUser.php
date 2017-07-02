@@ -1,4 +1,13 @@
 <?php
+/**
+ * Class Name: None
+ * Date: 07/27/17
+ * Programmer: Matthew Corrente and Daniel Farley
+ * Description: This module allows a user to create a new account the website .
+ * Explanation of important functions: All of the methods are getters and setters.
+ * Important data structures: None.
+ * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
+ */
 
 require_once("layout.php");
 require_once("Customer.php");

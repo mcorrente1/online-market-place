@@ -1,4 +1,13 @@
 <?php
+/**
+ * Class Name: None
+ * Date: 07/27/17
+ * Programmer: Matthew Corrente
+ * Description: This module displays the user account information
+ * Explanation of important functions: None.
+ * Important data structures: None.
+ * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
+ */
 
 require("layout.php");
 require_once("Customer.php");

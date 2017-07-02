@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class Name: Product
  * Date: 07/27/17
@@ -13,7 +12,6 @@
  * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
  */
 
-#todo make a singleton
 class Product
 {
     private $name;

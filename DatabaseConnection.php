@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class Name: DatabaseConnection
  * Date: 07/27/17

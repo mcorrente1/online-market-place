@@ -1,4 +1,13 @@
 <?php
+/**
+ * Class Name: None
+ * Date: 07/27/17
+ * Programmer: Matthew Corrente and Saqib Shahabuddin
+ * Description: This module is used to display the store page many variables are defined and declared here
+ * Explanation of important functions: None.
+ * Important data structures: None.
+ * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
+ */
 
 require_once("Products.php");
 require_once("Cart.php");

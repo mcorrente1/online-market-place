@@ -1,4 +1,15 @@
 <?php
+/**
+ * Class Name: none
+ * Date: 07/27/17
+ * Programmer: Saqib Shahabuddin
+ * Description: This module displays the company’s contact information and allows the user to send the company an
+ * email
+ * Explanation of important functions: none
+ * Important data structures: None.
+ * Algorithm choice: this module contains very basic functionality, so no specific algorithms were required.
+ */
+
 require_once("layout.php");
 require_once("Customer.php");
 require_once("mailer.php");

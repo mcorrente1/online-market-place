@@ -1,4 +1,13 @@
 <?php
+/**
+ * Class Name: None
+ * Date: 07/27/17
+ * Programmer: Saqib Shahabuddin and Daniel Farley
+ * Description: This module is used a template for all of the other pages on the website
+ * Explanation of important functions: None.
+ * Important data structures: None.
+ * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
+ */
 
 function outputHeader($title, $id)
 {
