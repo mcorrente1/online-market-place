@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class Name: DatabaseConnection
  * Date: 07/27/17
@@ -77,10 +76,9 @@ class DatabaseConnection {
     # receives an SQL command, processes the command through the $conn variable then returns the result
     function queryDB($sql){
         if($result = $this->getConnection()->query($sql)){
-            echo "worked out";
         }
         else{
-            echo "nah";
+            echo "error";
         }
         return $result;
     }

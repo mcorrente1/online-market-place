@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class Name: Products
  * Date: 07/27/17
@@ -10,7 +9,7 @@
  * to be passed in. First, a connection to the database is created and then a query is sent to select everything from
  * the PRODUCTS table. Every returned row is looped through and product objects are then instantiated and added to the
  * products array to the location based on their product id.
- * Another important function is the display, which uses a foreach loop structure to output each product in the products
+ * Another important function is the display, which uses a foreach loop structure to output each product from the products
  * array to an HTML table.
  * Important data structures: Array-used to manage all of the products
  * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required
@@ -70,13 +69,51 @@ class Products{
     function displayProducts()
     {
 
-        echo "<table style='width:500px;' cellspacing='0' >";
+        echo "<table id='displayProductsTable' cellpadding='10' cellspacing='0' >";
+        //echo "<p><button onclick='sortTable()'>Sort</button></p>";
 
         // Loop to display all products
         foreach($this->products as $product) {
            $product->display();
         }
         echo "</table>";
+        echo "<script>
+        function sortTable() {
+          var table, rows, switching, i, x, y, shouldSwitch;
+          table = document.getElementById('myTable');
+          switching = true;
+          /*Make a loop that will continue until no switching has been done:*/
+          while (switching)
+          {
+              //start by saying: no switching is done:
+              switching = false;
+              rows = table.getElementsByTagName('TR');
+              /*Loop through all table rows (except the first, which contains table headers):*/
+
+              for (i = 1; i < (rows.length - 1); i++)
+              {
+                  //start by saying there should be no switching:
+                  shouldSwitch = false;
+                  /*Get the two elements you want to compare,
+                  one from current row and one from the next:*/
+                  x = rows[i].getElementsByTagName('TD')[0];
+                  y = rows[i + 1].getElementsByTagName('TD')[0];
+                  //check if the two rows should switch place:
+                  if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase())
+                  {
+                      //if so, mark as a switch and break the loop:
+                      shouldSwitch= true;
+                      break;
+                  }
+            }
+            if (shouldSwitch)
+            {
+              /*If a switch has been marked, make the switch and mark that a switch has been done:*/
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+            }
+        }
+      }</script>";
     }
 
 }

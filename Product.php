@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class Name: Product
  * Date: 07/27/17
@@ -13,7 +12,6 @@
  * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
  */
 
-#todo make a singleton
 class Product
 {
     private $name;
@@ -68,20 +66,30 @@ class Product
     //used to after user clicks on a product, this function provides ability to add to cart??
     public function viewProduct(){
         // Display product
-        echo "<p>
-			<span style='font-weight:bold;'>" . $this->getName() . "</span><br />
-			<span><img src=".$this->getImagePath()." alt=". $this->getName() ."height='700' width='500'\"></span><br/>
-			<span>$" . $this->getPrice() . "</span><br />
-			<span>" . $this->getDesc() . "</span><br />
-			<p>
-				<form action='./index.php?view_product=".$this->getProductId()." method='post'>
-					<input name='quantity' type='number' min='1' value='1' required>
-					<input type='hidden' name='product_id' value=" . $this->getProductId() . " />
-					<input type='hidden' name='view_cart' value='TRUE' />
-					<input type='submit' name='add_to_cart' value='Add to cart' />
-				</form>
-			</p>
-		</p>";
+        echo "<table id='viewProductTable' cellspacing='10'>
+            <tr><td></td></tr>
+            <tr>
+                <td>
+			        <img src=".$this->getImagePath()." alt=". $this->getName() ." height='342' width='171'\">
+			    </td>
+			    <td class='productInfo'>
+			        <span>" . $this->getName() . "</span>
+			        <br><br><br><br>
+			        <span>$" . $this->getPrice() . "</span><br><br><br>
+			        <span>" . $this->getDesc() . "</span>
+			    </td>
+			    <td class='productPurchase'>
+			    <p>
+				    <form action='./index.php?view_product=".$this->getProductId()." method='post'>
+					    <input name='quantity' type='number' min='1' value='1' required>
+					    <input type='hidden' name='product_id' value=" . $this->getProductId() . " />
+					    <input type='hidden' name='view_cart' value='TRUE' />
+					    <input type='submit' name='add_to_cart' value='Add to cart' />
+				    </form>
+			    </p>
+			    </td>
+			</tr>
+		</table>";
     }
 
     public function display(){
@@ -89,10 +97,10 @@ class Product
         // Display product
         #todo also make sure that hyperlink is correct
         echo "<tr>
-			<td><img src=".$this->getImagePath()." alt=". $this->getName() ."height='304' width='228'\"></td>
-			<td style='border-bottom:1px solid #000000;'><a href='./index.php?view_product=". $this->getProductId() ."'>" . $this->getName() . "</a></td>
-			<td style='border-bottom:1px solid #000000;'>$" . $this->getPrice() . "</td>
-			<td style='border-bottom:1px solid #000000;'>" . $this->getDesc() . "</td>
+			<td class='productPic'><img src=".$this->getImagePath()." alt=". $this->getName() ." height='342' width='171'\"></td>
+			<td class='productLink'><a href='./index.php?view_product=". $this->getProductId() ."'>" . $this->getName() . "</a></td>
+			<td class='productPrice'>$" . $this->getPrice() . "</td>
+			<td class='productDesc'>" . $this->getDesc() . "</td>
 		</tr>";
 
 

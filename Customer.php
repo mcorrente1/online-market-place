@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class Name: Customer
  * Date: 07/27/17
@@ -18,25 +17,22 @@ class Customer extends User
 {
     private $firstName;
     private $lastName;
-    private $creditCard;
     private $email;
     private $address;
     private $phoneNumber;
 
-    public function __construct($id, $fName, $lName, $cc, $eAddress, $newAddress, $pNum){
+    public function __construct($id, $fName, $lName, $eAddress, $newAddress, $pNum){
         $this->setUserId($id);
         $this->firstName = $fName;
         $this->lastName = $lName;
-        $this->creditCard = $cc;
         $this->email = $eAddress;
         $this->address = $newAddress;
         $this->phoneNumber = $pNum;
     }
 
-    public function initializeCustomer($fName, $lName, $cc, $eAddress, $newAddress, $pNum){
+    public function initializeCustomer($fName, $lName, $eAddress, $newAddress, $pNum){
         $this->firstName = $fName;
         $this->lastName = $lName;
-        $this->creditCard = $cc;
         $this->email = $eAddress;
         $this->address = $newAddress;
         $this->phoneNumber = $pNum;
@@ -48,10 +44,6 @@ class Customer extends User
 
     public function getLastName(){
         return $this->lastName;
-    }
-
-    public function getCreditCard(){
-        return $this->creditCard;
     }
 
     public function getEmail(){
@@ -73,10 +65,6 @@ class Customer extends User
 
     public function setLastName($name){
         $this->lastName = $name;
-    }
-
-    public function setCreditCard($cardInfo){
-        $this->creditCard= $cardInfo;
     }
 
     public function setEmail($newEmail){

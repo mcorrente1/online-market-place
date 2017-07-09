@@ -1,8 +1,18 @@
 <?php
+/**
+ * Class Name: CartItem
+ * Date: 07/27/17
+ * Programmer: Matthew Corrente
+ * Description: This class is a specific item within the Cart class it represents a product from our online store.
+ *This class was implemented as a Product class decorator adding functionality to manage the quantity
+ * of a product in the user’s cart.
+ * Explanation of important functions: All of the methods are getters and setters and one constructor.
+ * Important data structures: None.
+ * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
+ */
 
 require_once("Product.php");
 
-# decorator for product class
 class CartItem {
 
     private $product;

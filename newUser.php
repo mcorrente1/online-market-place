@@ -1,4 +1,13 @@
 <?php
+/**
+ * Class Name: None
+ * Date: 07/27/17
+ * Programmer: Matthew Corrente and Daniel Farley
+ * Description: This module allows a user to create a new account the website .
+ * Explanation of important functions: All of the methods are getters and setters.
+ * Important data structures: None.
+ * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
+ */
 
 require_once("layout.php");
 require_once("Customer.php");
@@ -90,10 +99,11 @@ if(!isset($_SESSION)) {
         }
         /* address pattern allows users to enter commas, or just spaces; address does need
         to end with 2 consecutive letters, followed by 5 consecutive digits (for state, zip--code) */
-        elseif(!preg_match("/^[0-9]+[ #.0-9a-zA-Z]+[,]*[ a-zA-Z]+[, ]*[a-zA-Z]{2}[ ][0-9]{5}$/", $_POST["address"])) {
-            $addressErr = "Not a valid address";
-            $isValid = false;
-        } else {
+//        elseif(!preg_match("/^[0-9]+[ #.0-9a-zA-Z]+[,]*[ a-zA-Z]+[, ]*[a-zA-Z]{2}[ ][0-9]{5}$/", $_POST["address"])) {
+//            $addressErr = "Not a valid address";
+//            $isValid = false;
+//        }
+        else {
             $address = test_input($_POST["address"]);
         }
 
@@ -121,21 +131,23 @@ if(!isset($_SESSION)) {
         }//end isValid
     }
     ?>
-
+    <div id="userForm">
     <span style="color:red">* required field.</span><br><br/>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-        <input type="text" name="fName" placeholder="First Name" value="<?php echo $fName; ?>"><span style="color:red">* <?php echo $fNameErr;?></span><br><br/>
-        <input type="text" name="lName" placeholder="Last Name" value="<?php echo $lName; ?>"><span style="color:red">* <?php echo $lNameErr;?></span><br><br/>
-        <input type="email" name="email" placeholder="Your Email" value="<?php echo $email; ?>"><span style="color:red">* <?php echo $emailErr;?></span><br><br/>
-        <input type="password" name="password" placeholder="Password"><span style="color:red">* <?php echo $passwordErr;?></span><br><br/>
-        <input type="password" name="confirmPassword" placeholder="Confirm Password"><span style="color:red">* <?php echo $confirmPasswordErr;?></span><br><br/>
-        <input type="tel" name="phoneNum" placeholder="Phone Number" value="<?php echo $phoneNum; ?>"><span style="color:red">* <?php echo $phoneNumErr;?></span><br><br/>
-        <input type="text" name="address" placeholder="Address" value="<?php echo $address; ?>"add><span style="color:red">* <?php echo $addressErr;?></span><br><br/>
+        <input type="text" name="fName" placeholder="First Name" value="<?php echo $fName; ?>">* <?php echo $fNameErr;?><br><br/>
+        <input type="text" name="lName" placeholder="Last Name" value="<?php echo $lName; ?>">* <?php echo $lNameErr;?><br><br/>
+        <input type="email" name="email" placeholder="Your Email" value="<?php echo $email; ?>">* <?php echo $emailErr;?><br><br/>
+        <input type="password" name="password" placeholder="Password">* <?php echo $passwordErr;?><br><br/>
+        <input type="password" name="confirmPassword" placeholder="Confirm Password">* <?php echo $confirmPasswordErr;?><br><br/>
+        <input type="tel" name="phoneNum" placeholder="Phone Number" value="<?php echo $phoneNum; ?>">* <?php echo $phoneNumErr;?><br><br/>
+        <input type="text" name="address" placeholder="Address" value="<?php echo $address; ?>">* <?php echo $addressErr;?><br><br/>
         <input type="submit" name="submit" value="Submit">
     </form>
-
-    <form action='login.php' method='POST'>Allready have an account?  <input type='submit' value='Click Here'>  to sign in.
+    </div>
+    <div id="userForm2">
+    <form action='login.php' method='POST'><br><br>Already have an account?<br><input type='submit' value='Click Here'> to sign in.
     </form>
+    </div>
 
 <?php
 outputFooter();

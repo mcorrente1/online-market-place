@@ -1,4 +1,13 @@
 <?php
+/**
+ * Class Name: None
+ * Date: 07/27/17
+ * Programmer: Matthew Corrente and Saqib Shahabuddin
+ * Description: This module is used to display the store page many variables are defined and declared here
+ * Explanation of important functions: None.
+ * Important data structures: None.
+ * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
+ */
 
 require_once("Products.php");
 require_once("Cart.php");
@@ -29,6 +38,9 @@ if(!isset($_SESSION['shopping_cart'])) {
 if(isset($_GET['empty_cart'])) {
     unset($_SESSION['shopping_cart']);
 	$_SESSION['shopping_cart'] = new Cart();
+	if(isset($_GET['thankYou'])) {
+        header('Location:/online-marketplace/thankYou.php');
+    }
 }
 
 // **PROCESS FORM DATA**
@@ -91,7 +103,7 @@ if(isset($_GET['view_product'])) {
 	if($_SESSION['products']->checkExists($product_id)) {
 		// Display site links
 		echo "<p>
-			<a href='./index.php'>Back</a>";
+			<a href='./index.php'>Back</a></p><br><br>";
 
 		// Display product
 		$_SESSION['products']->displayProductForPurchase($product_id);
@@ -155,11 +167,20 @@ else if(isset($_GET['checkout'])) {
 						<td style='border-bottom:1px solid #000000;'>$" . $cartItem->getProductPrice() . "</td>
 						<td style='border-bottom:1px solid #000000;'>" . $cartItem->getQuantity() . "</td>
 						<td style='border-bottom:1px solid #000000;'>$" . ($cartItem->getProductPrice() * $cartItem->getQuantity()) . "</td>
-					</tr>";
+					  </tr>";
+            $receipt = $cartItem->getProductName() . "  $" .$cartItem->getProductPrice() . " x" . $cartItem->getQuantity() . " = $" . ($cartItem->getProductPrice() * $cartItem->getQuantity()) . "<br/>";
 				}
 			echo "</table>
-			<p>Total price: $" . $total_price . "</p>";
+			<p>Total price: $" . $total_price . "</p></form>";
+      $receipt .=  "<br/>". "Total Price: $". $total_price;
 
+
+        echo "<form action='billingInfo.php' method='POST'>
+        <input type='hidden' name='launchParameter' value='initial'/>
+        <input type='hidden' name='receipt' value='".$receipt."'/>
+        <input type='submit' value='Billing Info'>
+        </form>
+        ";
 	}
 }
 // View all products

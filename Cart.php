@@ -1,4 +1,14 @@
 <?php
+/**
+ * Class Name: Cart
+ * Date: 07/27/17
+ * Programmer: Matthew Corrente
+ * Description: This class is used to manage a customer the customer's shopping cart while they are browsing the
+ * website. The user is able to add and remove items from their shopping cart
+ * Explanation of important functions: The functions add or remove an item from the cart, update the cart, and check if * the cart is full
+ * Important data structures: Dynamic array
+ * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
+ */
 
 require("CartItem.php");
 

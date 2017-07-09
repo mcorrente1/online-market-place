@@ -1,4 +1,14 @@
 <?php
+/**
+ * Class Name: None
+ * Date: 07/27/17
+ * Programmer: Matthew Corrente
+ * Description: This module allows the user to login into their account
+ * Explanation of important functions: None.
+ * Important data structures: None.
+ * Algorithm choice: this class contains very basic functionality, so no specific algorithms were required.
+ */
+
 require_once("layout.php");
 require("DatabaseConnection.php");
 require_once("Customer.php");
@@ -18,7 +28,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) ) {
     if ($result && $result->num_rows == 1) {
         $row = $result->fetch_array();
         unset($_SESSION['user']);
-        $_SESSION['user'] = new Customer($row["userId"],$row["firstName"], $row["lastName"],$row["creditCard"],$row["email"],$row["address"],$row["phone"]);
+        $_SESSION['user'] = new Customer($row["userId"],$row["firstName"], $row["lastName"],$row["email"],$row["address"],$row["phone"]);
         header('Location:/online-marketplace/index.php');
     }
     else {
@@ -32,18 +42,17 @@ if(isset($_GET["retry"])){
 }
 
 
-echo "<form action='#' method='POST'>
-Email: <input type='text' name='email' value='".$email."'><br>
-Password: <input type='password' name='password'><br>
-<input type='submit'>
+echo "<form id='loginInfo' action='#' method='POST'>
+Email: <br><input type='text' name='email' value='".$email."'><br><br>
+Password: <br><input type='password' name='password'><br><br>
+<input type='submit'><br><br><br><br><br>
 </form>
 ";
 
-echo "<form action='newUser.php' method='POST'>
-Don't have an account?  <input type='submit' value='Click Here'>  to create one.
+echo "<form id='createAccount' action='newUser.php' method='POST'>
+Don't have an account?<br><input type='submit' value='Click Here'> to create one.
 </form>
 ";
-
 
 
 outputFooter();
